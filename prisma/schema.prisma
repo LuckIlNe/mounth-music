@@ -35,8 +35,8 @@ model Account {
   createdAt          DateTime  @default(now()) @map(name: "created_at")
   updatedAt          DateTime  @default(now()) @map(name: "updated_at")
 
-  //@@index([providerAccountId], name: "providerAccountId")
-  //@@index([providerId], name: "providerId")
+  @@index([providerAccountId], name: "providerAccountId")
+  @@index([provider], name: "provider")
   @@index([userId], name: "userId")
 
   @@unique([provider, providerAccountId])
@@ -74,7 +74,7 @@ model User {
 }
 
 model Playlist {
-  id          Int    @id @default(autoincrement())
+  id          String    @id @default(cuid())
   mounth      Int
   year        Int
   user        User    @relation(fields: [userId], references: [id])

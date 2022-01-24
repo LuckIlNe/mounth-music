@@ -9,6 +9,7 @@ import prisma from '../../../lib/db/prisma';
 
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
+  secret: process.env.SECRET,
   providers: [
     SpotifyProvider({
       authorization: 'https://accounts.spotify.com/authorize?scope=user-read-email,playlist-read-private',
